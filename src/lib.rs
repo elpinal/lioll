@@ -1,7 +1,11 @@
 #![warn(missing_docs)]
 
+/// Represents tokens.
 enum Token {
     String(String),
+    Number(isize),
+    LBrack,
+    RBrack,
 }
 
 #[cfg(test)]
