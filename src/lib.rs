@@ -1,3 +1,7 @@
+enum Token {
+    String(String),
+}
+
 #[cfg(test)]
 mod tests {
     #[test]
