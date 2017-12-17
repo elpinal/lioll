@@ -18,6 +18,16 @@ struct Lexer<R: Read + Sized> {
     bytes: Peekable<io::Bytes<R>>,
 }
 
+impl<R> Lexer<R>
+where
+    R: Read,
+{
+    /// Creates a new lexer.
+    pub fn new(r: R) -> Lexer<R> {
+        Lexer { bytes: r.bytes().peekable() }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     #[test]
