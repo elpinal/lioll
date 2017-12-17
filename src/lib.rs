@@ -1,3 +1,4 @@
+//! The Lioll project.
 #![warn(missing_docs)]
 
 /// Represents tokens.
