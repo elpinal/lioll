@@ -39,12 +39,20 @@ where
                         match b {
                             b'[' => return Ok(Token::LBrack),
                             b']' => return Ok(Token::RBrack),
+                            b'\'' => return self.string(),
                             _ => (),
                         }
                     }
                 }
             }
             self.bytes.next().unwrap()?;
+        }
+    }
+
+    fn string(&mut self) -> Result<Token, LexError> {
+        match self.bytes.next() {
+            None => return Err(LexError::Terminate),
+            Some(r) => unimplemented!(),
         }
     }
 }
