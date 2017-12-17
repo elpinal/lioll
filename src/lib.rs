@@ -7,6 +7,7 @@ use std::iter::Peekable;
 use std::string::FromUtf8Error;
 
 /// Represents tokens.
+#[derive(Debug, PartialEq)]
 enum Token {
     String(String),
     Number(isize),
@@ -75,8 +76,11 @@ impl From<FromUtf8Error> for LexError {
 
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
-    fn it_works() {
-        assert_eq!(2 + 2, 4);
+    fn test_lex() {
+        let mut l = Lexer::new("[".as_bytes());
+        assert_eq!(l.lex().ok(), Some(Token::LBrack));
     }
 }
