@@ -74,6 +74,16 @@ impl From<FromUtf8Error> for LexError {
     }
 }
 
+impl LexError {
+    /// Test an error is caused by EOF.
+    pub fn is_eof(&self) -> bool {
+        match self {
+            &LexError::EOF => true,
+            _ => false,
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -82,5 +92,6 @@ mod tests {
     fn test_lex() {
         let mut l = Lexer::new("[".as_bytes());
         assert_eq!(l.lex().ok(), Some(Token::LBrack));
+        assert!(l.lex().unwrap_err().is_eof());
     }
 }
