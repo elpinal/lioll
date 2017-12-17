@@ -30,9 +30,19 @@ where
 
     /// Lexes a token. It returns an error if the input is invalid.
     pub fn lex(&mut self) -> Result<Token, LexError> {
-        match self.bytes.peek() {
-            None => Err(LexError::EOF),
-            Some(r) => unimplemented!(),
+        loop {
+            match self.bytes.peek() {
+                None => return Err(LexError::EOF),
+                Some(r) => {
+                    if let &Ok(b) = r {
+                        match b {
+                            b'[' => return Ok(Token::LBrack),
+                            _ => (),
+                        }
+                    }
+                }
+            }
+            self.bytes.next().unwrap()?;
         }
     }
 }
