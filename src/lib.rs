@@ -40,6 +40,7 @@ where
                             b'[' => return Ok(Token::LBrack),
                             b']' => return Ok(Token::RBrack),
                             b'\'' => return self.string(),
+                            b'1'...b'9' => return self.number(),
                             _ => (),
                         }
                     }
@@ -52,6 +53,13 @@ where
     fn string(&mut self) -> Result<Token, LexError> {
         match self.bytes.next() {
             None => return Err(LexError::Terminate),
+            Some(r) => unimplemented!(),
+        }
+    }
+
+    fn number(&mut self) -> Result<Token, LexError> {
+        match self.bytes.next() {
+            None => unimplemented!(),
             Some(r) => unimplemented!(),
         }
     }
