@@ -30,7 +30,10 @@ where
 
     /// Lexes a token. It returns an error if the input is invalid.
     pub fn lex(&mut self) -> Result<Token, LexError> {
-        unimplemented!();
+        match self.bytes.peek() {
+            None => Err(LexError::EOF),
+            Some(r) => unimplemented!(),
+        }
     }
 }
 
