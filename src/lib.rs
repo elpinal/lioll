@@ -38,6 +38,7 @@ where
                     if let &Ok(b) = r {
                         match b {
                             b'[' => return Ok(Token::LBrack),
+                            b']' => return Ok(Token::RBrack),
                             _ => (),
                         }
                     }
