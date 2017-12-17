@@ -27,6 +27,11 @@ where
     pub fn new(r: R) -> Lexer<R> {
         Lexer { bytes: r.bytes().peekable() }
     }
+
+    /// Lexes a token. It returns an error if the input is invalid.
+    pub fn lex(&mut self) -> Result<Token, LexError> {
+        unimplemented!();
+    }
 }
 
 #[derive(Debug)]
