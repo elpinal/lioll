@@ -51,9 +51,17 @@ where
     }
 
     fn string(&mut self) -> Result<Token, LexError> {
-        match self.bytes.next() {
-            None => return Err(LexError::Terminate),
-            Some(r) => unimplemented!(),
+        let mut vec = Vec::new();
+        loop {
+            match self.bytes.next() {
+                None => return Err(LexError::Terminate),
+                Some(r) => {
+                    match r? {
+                        b'\'' => return Ok(Token::String(String::from_utf8(vec)?)),
+                        b => vec.push(b),
+                    }
+                }
+            }
         }
     }
 
