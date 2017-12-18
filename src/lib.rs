@@ -66,9 +66,17 @@ where
     }
 
     fn number(&mut self) -> Result<Token, LexError> {
-        match self.bytes.next() {
-            None => unimplemented!(),
-            Some(r) => unimplemented!(),
+        let mut n: isize = 0;
+        loop {
+            match self.bytes.next() {
+                None => return Ok(Token::Number(n)),
+                Some(r) => {
+                    match r? {
+                        b @ b'0'...b'9' => n = n * 10 + b as isize,
+                        b => return Ok(Token::Number(n)),
+                    }
+                }
+            }
         }
     }
 }
